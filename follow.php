@@ -15,14 +15,14 @@ if($_GET['userid']  && $_GET['username']){
 		mysql_close($conn);
 		if(!(mysql_num_rows($query)>=1)){
 			include 'connect.php';
-			mysql_query("INSERT INTO following(user1_id, user2_id) 
+			mysqli_query($conn,"INSERT INTO following(user1_id, user2_id) 
 						 VALUES ('$user_id', '$follow_userid')
 						");
-			mysql_query("UPDATE users
+			mysql_query($conn,"UPDATE users
 						 SET following = following + 1
 						 WHERE id='$user_id'
 						");
-			mysql_query("UPDATE users
+			mysql_query($conn,"UPDATE users
 						 SET followers = followers + 1
 						 WHERE id='$follow_userid'
 						");
