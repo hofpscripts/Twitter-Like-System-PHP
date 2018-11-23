@@ -18,15 +18,15 @@ if($_GET['userid']  && $_GET['username']){
 			mysqli_query($conn,"INSERT INTO following(user1_id, user2_id) 
 						 VALUES ('$user_id', '$follow_userid')
 						");
-			mysql_query($conn,"UPDATE users
+			mysqli_query($conn,"UPDATE users
 						 SET following = following + 1
 						 WHERE id='$user_id'
 						");
-			mysql_query($conn,"UPDATE users
+			mysqli_query($conn,"UPDATE users
 						 SET followers = followers + 1
 						 WHERE id='$follow_userid'
 						");
-			mysql_close($conn);
+			mysqli_close($conn);
 		}
 		header("Location: ./".$follow_username);
 	}
