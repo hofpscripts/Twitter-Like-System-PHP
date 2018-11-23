@@ -8,7 +8,7 @@ if($_GET['userid']  && $_GET['username']){
 		$follow_userid = $_GET['userid'];
 		$follow_username = $_GET['username'];
 		include 'connect.php';
-		$query = mysql_query("SELECT id
+		$query = mysqli_query("SELECT id
 							   FROM following 
 							   WHERE user1_id='$user_id' AND user2_id='$follow_userid'
 							  ");
