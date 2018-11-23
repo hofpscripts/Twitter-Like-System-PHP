@@ -37,13 +37,13 @@ if($_GET['hashtag']!=""){
 	$hashtag = $_GET['hashtag'];
 	echo "<div style='font-size:20px;'>Tweets with <a>#".$hashtag."</a></div>";
 	include "connect.php";
-	$tweets = mysql_query("SELECT username, tweet, timestamp
+	$tweets = mysqli_query($conn,"SELECT username, tweet, timestamp
 		FROM tweets
 		WHERE tweet REGEXP '^#$hashtag' OR tweet REGEXP ' #$hashtag'
 		ORDER BY timestamp DESC
 		LIMIT 0, 10
 		");
-	if(mysql_num_rows($tweets)>0){
+	if(mysqli_num_rows($tweets)>0){
 		while($tweet = mysql_fetch_array($tweets)){
 			echo "<div class='well well-sm' style='padding-top:4px;padding-bottom:8px; margin-bottom:8px; overflow:hidden;'>";
 			echo "<div style='font-size:10px;float:right;'>".getTime($tweet['timestamp'])."</div>";
@@ -66,7 +66,7 @@ if($_GET['hashtag']!=""){
 	else{
 		echo "<h5><i>No tweets found.</i><br> Be the first one to use <a href='..'>#$hashtag</a></h5>";
 	}
-	mysql_close($conn);
+	mysqli_close($conn);
 }
 else{
 	echo "<div class='alert alert-danger'>Sorry, invalid hashtag.</div>";
