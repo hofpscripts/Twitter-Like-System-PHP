@@ -7,11 +7,11 @@ if($_POST['login-btn']=="login-submit"){
   if($_POST['username']!="" && $_POST['password']!=""){
     $username = strtolower($_POST['username']);
     include "connect.php";
-    $query = mysql_query("SELECT id, password
+    $query = mysqli_query($conn,"SELECT id, password
                           FROM users
                           WHERE username='$username'
                           ");
-    mysql_close($conn);
+    mysqli_close($conn);
     if(mysql_num_rows($query)>=1){
       $password = md5($_POST['password']);
       $row = mysql_fetch_assoc($query);
