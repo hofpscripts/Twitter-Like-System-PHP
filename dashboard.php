@@ -13,12 +13,12 @@ function getTime($t_time){
 }
 	if($user_id){
 		include "connect.php";
-		$query = mysql_query("SELECT username, followers, following, tweets
+		$query = mysqli_query($conn,"SELECT username, followers, following, tweets
                               FROM users
                               WHERE id='$user_id'
                              ");
-		mysql_close($conn);
-		$row = mysql_fetch_assoc($query);
+		mysqli_close($conn);
+		$row = mysqli_fetch_assoc($query);
 		$username = $row['username'];
 		$tweets = $row['tweets'];
 		$followers = $row['followers'];
@@ -44,7 +44,7 @@ function getTime($t_time){
 		<br>
 		";
 		include "connect.php";
-		$tweets = mysql_query("SELECT username, tweet, timestamp
+		$tweets = mysqli_query($conn,"SELECT username, tweet, timestamp
 							   FROM tweets
 							   WHERE user_id = $user_id OR (user_id IN (SELECT user2_id FROM following WHERE user1_id='$user_id'))
 							   ORDER BY timestamp DESC
@@ -68,7 +68,7 @@ function getTime($t_time){
 			echo "</table>";
 			echo "</div>";
 		}
-		mysql_close($conn);
+		mysqli_close($conn);
 	}
 ?>
 <div class="jumbotron" style="padding:3px;">
