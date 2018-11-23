@@ -1,9 +1,7 @@
 Twitter-Like-System-PHP
 =======================
 
-A simple twitter clone using PHP and a MySQL database.
-
-<b>Try out the <a href="http://simarsingh.com/twitter-php">Demo</a> for Twitter-Like-System-PHP</b>
+Updated to use Mysqli.
 
 <img src="http://i62.tinypic.com/2lu8gsl.png"/>
 
