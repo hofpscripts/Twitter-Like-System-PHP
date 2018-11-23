@@ -33,11 +33,11 @@ $user_id = $_SESSION['user_id'];
 	if($_GET['username']){
 		include 'connect.php';
 		$username = strtolower($_GET['username']);
-		$query = mysql_query("SELECT id, username, followers, following, tweets
+		$query = mysqli_query($conn,"SELECT id, username, followers, following, tweets
 			FROM users
 			WHERE username='$username'
 			");
-		mysql_close($conn);
+		mysqli_close($conn);
 		if(mysql_num_rows($query)>=1){
 			$row = mysql_fetch_assoc($query);
 			$id = $row['id'];
@@ -48,12 +48,12 @@ $user_id = $_SESSION['user_id'];
 			if($user_id){
 				if($user_id!=$id){
 					include 'connect.php';
-					$query2 = mysql_query("SELECT id
+					$query2 = mysqli_query($conn,"SELECT id
 										   FROM following
 										   WHERE user1_id='$user_id' AND user2_id='$id'
 										  ");
-					mysql_close($conn);
-					if(mysql_num_rows($query2)>=1){
+					mysqli_close($conn);
+					if(mysqli_num_rows($query2)>=1){
 						echo "<a href='unfollow.php?userid=$id&username=$username' class='btn btn-default btn-xs' style='float:right;'>Unfollow</a>";
 					}
 					else{
@@ -73,12 +73,12 @@ $user_id = $_SESSION['user_id'];
 					<td valign='top' style='padding-left:8px;'>
 						<h6><a href='./$username'>@$username</a>";
 			include 'connect.php';
-			$query3 = mysql_query("SELECT id
+			$query3 = mysqli_query($conn,"SELECT id
 								   FROM following
 								   WHERE user1_id='$id' AND user2_id='$user_id'
 								  ");
-			mysql_close($conn);
-			if(mysql_num_rows($query3)>=1){
+			mysqli_close($conn);
+			if(mysqli_num_rows($query3)>=1){
 				echo " - <i>Follows You</i>";
 			}
 			echo												"</h6>
@@ -88,13 +88,13 @@ $user_id = $_SESSION['user_id'];
 			</table>
 			";
 			include "connect.php";
-			$tweets = mysql_query("SELECT username, tweet, timestamp
+			$tweets = mysqli_query($conn,"SELECT username, tweet, timestamp
 				FROM tweets
 				WHERE user_id = $id
 				ORDER BY timestamp DESC
 				LIMIT 0, 10
 				");
-			while($tweet = mysql_fetch_array($tweets)){
+			while($tweet = mysqli_fetch_array($tweets)){
 				echo "<div class='well well-sm' style='padding-top:4px;padding-bottom:8px; margin-bottom:8px; overflow:hidden;'>";
 				echo "<div style='font-size:10px;float:right;'>".getTime($tweet['timestamp'])."</div>";
 				echo "<table>";
@@ -112,7 +112,7 @@ $user_id = $_SESSION['user_id'];
 				echo "</table>";
 				echo "</div>";
 			}
-			mysql_close($conn);
+			mysqli_close($conn);
 		}
 		else{
 			echo "<div class='alert alert-danger'>Sorry, this profile doesn't exist.</div>";
