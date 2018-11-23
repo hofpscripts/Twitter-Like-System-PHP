@@ -72,8 +72,8 @@ if($_POST['login-btn']=="login-submit"){
   <br>
   <div class="jumbotron" style="padding:3px;">
     <div class="container">
-      <h5>Made by <a href="http://simarsingh.com">Simar</a></h5>
-      <h5>This is Open Source - Fork it on <i class="fa fa-github"></i> <a href="https://github.com/iSimar/Twitter-Like-System-PHP">GitHub</a></h5>
+      <h5>Made by <a href="http://simarsingh.com">Simar</a>. Updated by hofpscripts.</h5>
+      <h5>This is Open Source - Fork it on <i class="fa fa-github"></i> <a href="https://github.com/hofpscripts/Twitter-Like-System-PHP">GitHub</a></h5>
     </div>
   </div>
 </body>
