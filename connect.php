@@ -7,6 +7,5 @@ $dbpass	= "PASSWORD"; //Password
 $dbname	= "NAME-OF-THE-DATABASE"; //Name of the database
 //********************************************************************************
 
-$conn = mysql_connect($dbhost, $dbuser, $dbpass) or die ("Error connecting to database");
-mysql_select_db($dbname);
+$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname) or die ("Error connecting to database");
 ?>
